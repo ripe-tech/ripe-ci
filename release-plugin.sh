@@ -24,13 +24,13 @@ tar xf gh_${gh_version}_linux_amd64.tar.gz
 
 # logs in using the GitHub CLI tool and sets git credentials
 echo "[INFO] Logging in GitHub CLI tool and setting Git credentials"
-echo $GITHUB_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
+echo $GH_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
 git config --global user.email "ripe-bot@platforme.com"
 git config --global user.name "ripe-bot"
 
 # clones RIPE Static
 echo "[INFO] Cloning RIPE Static"
-git clone https://ripe-bot:$GITHUB_TOKEN@github.com/ripe-tech/ripe-static
+git clone https://ripe-bot:$GH_TOKEN@github.com/ripe-tech/ripe-static
 cd ripe-static
 
 # creates the release branch, deleting an already existing
