@@ -30,7 +30,7 @@ git config --global user.name "ripe-bot"
 
 # clones RIPE Static
 echo "[INFO] Cloning RIPE Static"
-git clone https://ripe-bot:$GH_TOKEN@github.com/ripe-tech/ripe-static
+git clone https://$GH_TOKEN@github.com/ripe-tech/ripe-static
 cd ripe-static
 
 # creates the release branch, deleting an already existing
