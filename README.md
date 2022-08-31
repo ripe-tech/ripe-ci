@@ -1,2 +1,3 @@
-# ripe-ci
-RIPE Tech CI scripts and configuration files
+# RIPE CI
+
+RIPE Tech CI scripts and configuration files.
