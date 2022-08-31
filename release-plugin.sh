@@ -50,11 +50,11 @@ echo "[INFO] Copying release contents to RIPE Static"
 mkdir -p ripe/ripe_commons/plugins/$name/$version
 cp -r ../dist/assets ripe/ripe_commons/plugins/$name/$version
 cp ../dist/bundle.js ripe/ripe_commons/plugins/$name/$version
-cp plugin.json ripe/ripe_commons/plugins/$name/$version
+cp ../plugin.json ripe/ripe_commons/plugins/$name/$version
 rm -rf ripe/ripe_commons/plugins/$name/latest
 cp -r ../dist/assets ripe/ripe_commons/plugins/$name/latest
 cp ../dist/bundle.js ripe/ripe_commons/plugins/$name/latest
-cp plugin.json ripe/ripe_commons/plugins/$name/latest
+cp ../plugin.json ripe/ripe_commons/plugins/$name/latest
 
 # pushes the release files to the created branch
 echo "[INFO] Pushing changes to '$branch'"
