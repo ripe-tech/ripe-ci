@@ -25,6 +25,7 @@ tar xf gh_${gh_version}_linux_amd64.tar.gz
 # logs in using the GitHub CLI tool and sets git credentials
 echo "[INFO] Logging in GitHub CLI tool and setting Git credentials"
 echo $RIPE_BOT_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
+git config --global credential.helper cache
 git config --global user.email "ripe-bot@platforme.com"
 git config --global user.name "ripe-bot"
 
@@ -73,6 +74,10 @@ echo "[INFO] Pushing changes to '$branch'"
 git add .
 git commit -m "version: $name@$version"
 git push -u origin $branch
+
+
+git push https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
+
 
 # creates the release pull request
 title="version: $name@$version"
