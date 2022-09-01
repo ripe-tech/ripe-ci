@@ -30,7 +30,7 @@ git config --global user.name "ripe-bot"
 
 # clones RIPE Static
 echo "[INFO] Cloning RIPE Static"
-git clone https://github.com/ripe-tech/ripe-static.git
+git clone https://ripe-bot:$GITHUB_TOKEN@github.com/ripe-tech/ripe-static
 if [ ! -d "ripe-static" ]; then
     echo "[ERROR] RIPE Static directory not found"
     exit -1
