@@ -24,14 +24,14 @@ tar xf gh_${gh_version}_linux_amd64.tar.gz
 
 # logs in using the GitHub CLI tool and sets git credentials
 echo "[INFO] Logging in GitHub CLI tool and setting Git credentials"
-echo $RIPE_BOT_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
+echo $RIPE_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
 git config --global credential.helper cache
-git config --global user.email "ripe-bot@platforme.com"
-git config --global user.name "ripe-bot"
+git config --global user.email "$RIPE_USER@platforme.com"
+git config --global user.name "$RIPE_USER"
 
 # clones RIPE Static
 echo "[INFO] Cloning RIPE Static"
-git clone https://ripe-bot:$RIPE_BOT_TOKEN@github.com/ripe-tech/ripe-static
+git clone https://$RIPE_USER:$RIPE_TOKEN@github.com/ripe-tech/ripe-static
 if [ ! -d "ripe-static" ]; then
     echo "[ERROR] RIPE Static directory not found"
     exit -1
@@ -40,7 +40,7 @@ cd ripe-static
 
 # creates the release branch, deleting an already existing
 # branch with the same name (hence this name should be specific)
-branch="ripe-bot/${name}-${version}"
+branch="$RIPE_USER/${name}-${version}"
 echo "[INFO] Creating release branch '$branch'"
 if git rev-parse --quiet --verify $branch /dev/null; then
     echo "[INFO] Branch '$branch' already exists. Deleting it and creating a new one."
@@ -83,6 +83,6 @@ git push -u origin $branch
 # creates the release pull request
 title="version: $name@$version"
 body="version: $name@$version"
-assignee="ripe-bot"
+assignee="$RIPE_USER"
 echo "[INFO] Creating pull request '$title' for branch '$branch' authored by $assignee"
 ../gh_${gh_version}_linux_amd64/bin/gh pr create --assignee $assignee --title "$title" --body "$body" --label "no-changelog" --label "release 🎉"
