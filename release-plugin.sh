@@ -31,7 +31,10 @@ git config --global user.name "ripe-bot"
 # clones RIPE Static
 echo "[INFO] Cloning RIPE Static"
 git clone https://$GH_TOKEN@github.com/ripe-tech/ripe-static
-[ -d "ripe-static" ] || (echo "[ERROR] RIPE Static directory not found" && exit -1)
+if [ ! -d "ripe-static" ]; then
+    echo "[ERROR] RIPE Static directory not found"
+    exit -1
+fi
 cd ripe-static
 
 # creates the release branch, deleting an already existing
@@ -48,8 +51,14 @@ git checkout -b $branch
 # copies the expected release contents to the target
 # destination in RIPE Static
 echo "[INFO] Copying release contents to RIPE Static"
-[ -d "../dist" ] || (echo "[ERROR] Bundle directory not found" && exit -1)
-[ -f "../plugin.json" ] || (echo "[ERROR] Plugin information not found" && exit -1)
+if [ ! -d "../dist" ]; then
+    echo "[ERROR] Bundle directory not found"
+    exit -1
+fi
+if [ ! -d "../plugin.json" ]; then
+    echo "[ERROR] Plugin information not found"
+    exit -1
+fi
 mkdir -p ripe/ripe_commons/plugins/$name/$version
 cp -r ../dist/assets ripe/ripe_commons/plugins/$name/$version
 cp ../dist/bundle.js ripe/ripe_commons/plugins/$name/$version
