@@ -55,7 +55,7 @@ if [ ! -d "../dist" ]; then
     echo "[ERROR] Bundle directory not found"
     exit -1
 fi
-if [ ! -d "../plugin.json" ]; then
+if [ ! -f "../plugin.json" ]; then
     echo "[ERROR] Plugin information not found"
     exit -1
 fi
