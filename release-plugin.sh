@@ -9,7 +9,7 @@ name=${BASH_REMATCH[1]}
 version_re='\"version\": \"([0-9]\.[0-9]\.[0-9])\"'
 [[ "$plugin_json" =~ $version_re ]]
 version=${BASH_REMATCH[1]}
-echo "[INFO] Automating release of $name@$version"
+echo "[INFO] Releasing $name@$version"
 
 # builds the release bundle
 echo "[INFO] Building release bundle"
@@ -24,13 +24,13 @@ tar xf gh_${gh_version}_linux_amd64.tar.gz
 
 # logs in using the GitHub CLI tool and sets git credentials
 echo "[INFO] Logging in GitHub CLI tool and setting Git credentials"
-echo $GH_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
+echo $GITHUB_TOKEN | gh_${gh_version}_linux_amd64/bin/gh auth login --with-token
 git config --global user.email "ripe-bot@platforme.com"
 git config --global user.name "ripe-bot"
 
 # clones RIPE Static
 echo "[INFO] Cloning RIPE Static"
-git clone https://$GH_TOKEN@github.com/ripe-tech/ripe-static
+git clone https://ripe-bot:${GITHUB_TOKEN}@github.com/ripe-tech/ripe-static
 if [ ! -d "ripe-static" ]; then
     echo "[ERROR] RIPE Static directory not found"
     exit -1
