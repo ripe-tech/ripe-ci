@@ -75,10 +75,6 @@ git add .
 git commit -m "version: $name@$version"
 git push -u origin $branch
 
-
-git push https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
-
-
 # creates the release pull request
 title="version: $name@$version"
 body="version: $name@$version"
