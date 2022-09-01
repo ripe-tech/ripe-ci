@@ -60,11 +60,16 @@ if [ ! -f "../plugin.json" ]; then
     echo "[ERROR] Plugin information not found"
     exit -1
 fi
+
+# copy files into version folder
 mkdir -p ripe/ripe_commons/plugins/$name/$version
 cp -r ../dist/assets ripe/ripe_commons/plugins/$name/$version
 cp ../dist/bundle.js ripe/ripe_commons/plugins/$name/$version
 cp ../plugin.json ripe/ripe_commons/plugins/$name/$version
+
+# copy files into latest folder
 rm -rf ripe/ripe_commons/plugins/$name/latest
+mkdir -p ripe/ripe_commons/plugins/$name/latest
 cp -r ../dist/assets ripe/ripe_commons/plugins/$name/latest
 cp ../dist/bundle.js ripe/ripe_commons/plugins/$name/latest
 cp ../plugin.json ripe/ripe_commons/plugins/$name/latest
